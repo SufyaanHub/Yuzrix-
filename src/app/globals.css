@@ -1,0 +1,233 @@
+@import url("https://db.onlinewebfonts.com/c/9d4d074c9335825a23cce178ee03b498?family=P22+Mackinac+W01+Book");
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "P22 Mackinac W01 Book", "Iowan Old Style", Georgia, serif;
+
+  /* Yuzrix palette: navy / ivory / brass */
+  --color-ink: #14181f;
+  --color-navy: #16233c;
+  --color-navy-deep: #0d1626;
+  --color-navy-soft: #2b3f63;
+  --color-ivory: #faf7f0;
+  --color-ivory-deep: #f2ece0;
+  --color-brass: #ab8140;
+  --color-brass-light: #cfa96b;
+  --color-brass-deep: #8a6626;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--color-ivory);
+  color: var(--color-ink);
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Soft ivory veil so hero copy stays legible over the background footage. */
+.hero-veil {
+  background: linear-gradient(
+    180deg,
+    rgb(250 247 240 / 0.94) 0%,
+    rgb(250 247 240 / 0.7) 30%,
+    rgb(250 247 240 / 0.34) 60%,
+    rgb(242 236 224 / 0.9) 100%
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+.problem-blueprint {
+  background-image:
+    linear-gradient(to right, rgb(22 35 60 / 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(22 35 60 / 0.05) 1px, transparent 1px),
+    radial-gradient(circle at 18% 40%, rgb(171 129 64 / 0.14), transparent 30%),
+    radial-gradient(circle at 88% 18%, rgb(250 247 240 / 0.95), transparent 32%);
+  background-size:
+    80px 80px,
+    80px 80px,
+    auto,
+    auto;
+  mask-image: linear-gradient(to bottom, black 0%, transparent 94%);
+}
+
+.problem-orb {
+  position: absolute;
+  border: 1px solid rgb(171 129 64 / 0.2);
+  border-radius: 9999px;
+  pointer-events: none;
+}
+
+.problem-orb-one {
+  top: 6%;
+  right: -12rem;
+  width: 34rem;
+  height: 34rem;
+  animation: problem-orbit-drift 12s ease-in-out infinite alternate;
+}
+
+.problem-orb-two {
+  bottom: 8%;
+  left: -9rem;
+  width: 18rem;
+  height: 18rem;
+  animation: problem-orbit-drift 9s ease-in-out 1s infinite alternate-reverse;
+}
+
+.pricing-problem-section .problem-reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition-property:
+    opacity, transform, background-color, border-color, box-shadow;
+  transition-duration: 700ms, 700ms, 300ms, 300ms, 300ms;
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.pricing-problem-section[data-visible="true"] .problem-reveal {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.pricing-problem-section .problem-visual {
+  transition-delay: 100ms;
+}
+
+.pricing-problem-section .problem-card:nth-child(2) {
+  margin-top: 1.5rem;
+}
+
+.pricing-problem-section .problem-card:nth-child(3) {
+  margin-top: -1.5rem;
+}
+
+.circular-gallery-spinner {
+  transform-origin: center;
+  animation: circular-gallery-spin var(--gallery-duration) linear infinite;
+  animation-direction: var(--gallery-direction);
+}
+
+.circular-gallery-item {
+  transform: translate(-50%, -50%) rotate(var(--gallery-angle))
+    translateY(calc(0px - var(--gallery-radius)));
+}
+
+.circular-gallery-card {
+  transform-origin: center;
+  animation: circular-gallery-counter-spin var(--gallery-duration) linear
+    infinite;
+  animation-direction: var(--gallery-direction);
+}
+
+.circular-gallery[data-pause-on-hover="true"]:hover .circular-gallery-spinner,
+.circular-gallery[data-pause-on-hover="true"]:hover .circular-gallery-card {
+  animation-play-state: paused;
+}
+
+@keyframes circular-gallery-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes circular-gallery-counter-spin {
+  from {
+    transform: rotate(var(--gallery-counter-angle));
+  }
+  to {
+    transform: rotate(calc(var(--gallery-counter-angle) - 360deg));
+  }
+}
+
+@keyframes problem-orbit-drift {
+  from {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  to {
+    transform: translate3d(-24px, 18px, 0) rotate(4deg);
+  }
+}
+
+@media (max-width: 639px) {
+  .circular-gallery {
+    --gallery-radius: 112px !important;
+  }
+
+  .pricing-problem-section .problem-card:nth-child(2),
+  .pricing-problem-section .problem-card:nth-child(3) {
+    margin-top: 0;
+  }
+
+  .problem-orb-one {
+    right: -22rem;
+  }
+}
+
+@media (min-width: 768px) and (max-height: 720px) {
+  .hero-copy {
+    padding-top: 5.5rem;
+  }
+
+  .hero-heading {
+    font-size: 4.5rem;
+    line-height: 1;
+  }
+
+  .hero-subcopy {
+    margin-top: 1rem;
+    line-height: 1.5;
+  }
+
+  .hero-demo {
+    margin-top: 1rem;
+    padding-top: 0.7rem;
+    padding-bottom: 0.7rem;
+  }
+
+  .info-panel-card {
+    padding-top: 1.5rem;
+  }
+
+  .info-panel-grid {
+    gap: 2rem;
+  }
+
+  .info-divider {
+    margin-top: 1rem;
+  }
+
+  .info-features {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .info-features > a {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+  }
+}
