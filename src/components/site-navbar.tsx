@@ -5,23 +5,16 @@ import { useEffect, useState } from "react"
 const navigation = [
   { label: "The problem", href: "#pricing-problem" },
   { label: "What you get", href: "#what-you-get" },
-  { label: "Free 5-item audit", href: "#request-audit" },
+  { label: "Contact", href: "#contact" },
 ]
 
-function LogoMark() {
-  return (
-    <svg
-      aria-hidden="true"
-      viewBox="0 0 256 256"
-      fill="currentColor"
-      className="size-6 text-navy"
-    >
-      <path d="M 144 256 L 27.598 256 L 144 139.598 Z" />
-      <path d="M 256 207.5 L 200 256 L 200 56 L 0 56 L 48 0 L 256 0 Z" />
-      <path d="M 0 204.402 L 0 112 L 92.402 112 Z" />
-    </svg>
-  )
-}
+/**
+ * `yuzrix-logo.png` is a cleaned crop of the supplied artwork: the tiny
+ * tagline ("Smarter Prices. Stronger Kitchens.") is erased because it turns
+ * to mush below ~60px, and the transparent padding is trimmed so the mark
+ * reads clearly at navbar size.
+ */
+const LOGO_ASPECT = 456 / 202
 
 export function SiteNavbar() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -45,17 +38,23 @@ export function SiteNavbar() {
     >
       <nav
         aria-label="Primary navigation"
-        className="mx-auto grid max-w-[1440px] grid-cols-2 items-center px-6 py-4 transition-[padding] duration-300 sm:px-10 sm:py-5 md:grid-cols-3 md:px-14"
+        className="mx-auto grid max-w-360 grid-cols-2 items-center px-6 py-4 transition-[padding] duration-300 sm:px-10 sm:py-5 md:grid-cols-3 md:px-14"
       >
         <a
           href="#"
           aria-label="Yuzrix home"
-          className="flex w-fit items-center gap-2.5"
+          className="flex w-fit items-center"
         >
-          <LogoMark />
-          <span className="font-serif text-lg tracking-tight text-navy">
-            Yuzrix
-          </span>
+          {/* The wordmark is baked into the artwork, so no text label here. */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/yuzrix-logo.png"
+            alt="Yuzrix"
+            width={456}
+            height={202}
+            className="h-10 w-auto sm:h-11 md:h-12"
+            style={{ aspectRatio: String(LOGO_ASPECT) }}
+          />
         </a>
 
         <div className="hidden items-center justify-center gap-7 md:flex lg:gap-9">
@@ -71,10 +70,10 @@ export function SiteNavbar() {
         </div>
 
         <a
-          href="#request-audit"
+          href="#contact"
           className="justify-self-end rounded-lg bg-navy px-5 py-2.5 text-sm font-medium whitespace-nowrap text-ivory transition-colors duration-200 hover:bg-navy-deep"
         >
-          Request an audit
+          Get a free audit
         </a>
       </nav>
     </header>

@@ -1,8 +1,13 @@
 import { ArrowRight } from "lucide-react"
 
-import { BoomerangVideoBg } from "@/components/boomerang-video-bg"
+import { AboutYuzrix } from "@/components/about-yuzrix"
+import { ContactYuzrix } from "@/components/contact-yuzrix"
+import { HeroVideoBg } from "@/components/hero-video-bg"
+import { HowItWorks } from "@/components/how-it-works"
 import { PricingProblemSection } from "@/components/pricing-problem-section"
+import { SiteFooter } from "@/components/site-footer"
 import { SiteNavbar } from "@/components/site-navbar"
+import { WhatYouGetMarquee } from "@/components/what-you-get-marquee"
 
 /** Mirrors the four points of the concierge price audit. */
 const deliverables = [
@@ -33,13 +38,13 @@ function InfoPanel() {
         <div className="info-divider mt-6 h-px w-full bg-navy/12 sm:mt-8 md:mt-10" />
 
         <div
-          id="what-you-get"
+          id="audit-deliverables"
           className="info-features grid gap-2 py-2 sm:grid-cols-3 sm:gap-3 sm:py-3"
         >
           {deliverables.map((feature) => (
             <a
               key={feature.number}
-              href="#pricing-problem"
+              href="#what-you-get"
               className="group flex cursor-pointer items-center justify-between bg-ivory-deep px-4 py-3.5 text-sm text-ink transition-all duration-200 hover:bg-ivory-deep/70 sm:px-6 sm:py-4"
             >
               <span>
@@ -62,7 +67,7 @@ export default function Page() {
       <SiteNavbar />
 
       <section className="relative flex min-h-screen flex-col items-center overflow-hidden sm:h-screen">
-        <BoomerangVideoBg />
+        <HeroVideoBg />
         <div aria-hidden="true" className="hero-veil absolute inset-0 z-1" />
 
         <div className="hero-copy relative z-10 flex flex-col items-center px-4 pt-24 text-center sm:px-6 sm:pt-26 md:pt-32">
@@ -82,7 +87,7 @@ export default function Page() {
           </p>
           <a
             id="request-audit"
-            href="#pricing-problem"
+            href="#contact"
             className="hero-demo mt-6 rounded-lg bg-navy px-6 py-3 text-sm font-medium text-ivory transition-colors duration-200 hover:bg-navy-deep sm:mt-8 sm:px-8 sm:py-3.5 md:mt-10"
           >
             Claim your free audit
@@ -95,6 +100,16 @@ export default function Page() {
       </section>
 
       <PricingProblemSection />
+
+      <HowItWorks />
+
+      <WhatYouGetMarquee />
+
+      <AboutYuzrix />
+
+      <ContactYuzrix />
+
+      <SiteFooter />
     </main>
   )
 }
