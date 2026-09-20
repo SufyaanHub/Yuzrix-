@@ -387,6 +387,96 @@ body {
   }
 }
 
+/* ── Yuzrix Assistant ──────────────────────────────────────────────────── */
+
+/* Soft brass wash in the header, matching the site's navy surfaces. */
+.assistant-header-glow {
+  background-image: radial-gradient(
+    circle at 92% -30%,
+    rgb(171 129 64 / 0.32),
+    transparent 58%
+  );
+}
+
+/* Sits just above the launcher's navy fill so the brass rim stays crisp. */
+.assistant-launcher {
+  isolation: isolate;
+}
+
+.assistant-launcher::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: 9999px;
+  background: radial-gradient(
+    circle at 50% 120%,
+    rgb(171 129 64 / 0.28),
+    transparent 62%
+  );
+}
+
+/* Unread nudge on the launcher, paused once the panel has been opened. */
+.assistant-ping {
+  animation: assistant-ping 2.6s ease-in-out infinite;
+}
+
+@keyframes assistant-ping {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.35);
+    opacity: 0.55;
+  }
+}
+
+/* Typing dots. */
+.assistant-dot {
+  animation: assistant-dot 1.1s ease-in-out infinite;
+}
+
+@keyframes assistant-dot {
+  0%,
+  60%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.4;
+  }
+  30% {
+    transform: translateY(-3px);
+    opacity: 1;
+  }
+}
+
+/* Slim brass-tinted scrollbar for the transcript. */
+.assistant-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(22 35 60 / 0.22) transparent;
+}
+
+.assistant-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.assistant-scroll::-webkit-scrollbar-thumb {
+  border-radius: 9999px;
+  background: rgb(22 35 60 / 0.22);
+}
+
+.assistant-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .assistant-ping,
+  .assistant-dot {
+    animation: none;
+  }
+}
+
 @media (max-width: 639px) {
   .circular-gallery {
     --gallery-radius: 112px !important;

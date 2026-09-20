@@ -1,6 +1,7 @@
 import { ArrowRight } from "lucide-react"
 
 import { AboutYuzrix } from "@/components/about-yuzrix"
+import { AssistantWidget } from "@/components/assistant-widget"
 import { ContactYuzrix } from "@/components/contact-yuzrix"
 import { HeroVideoBg } from "@/components/hero-video-bg"
 import { HowItWorks } from "@/components/how-it-works"
@@ -110,6 +111,10 @@ export default function Page() {
       <ContactYuzrix />
 
       <SiteFooter />
+
+      {/* Floating LLM assistant. Rendered last so it sits above every
+          section without affecting the existing layout. */}
+      <AssistantWidget />
     </main>
   )
 }
